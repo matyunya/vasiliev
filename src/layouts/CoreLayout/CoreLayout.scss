@@ -5,6 +5,8 @@
 .container-header {
   max-width: 700px;
   margin: auto;
+  background-color: grey;
+  padding:2rem;
 }
 
 .container {
@@ -31,9 +33,16 @@ h4 {
     background-color:purple;
     padding: 8px;
     margin-bottom: 20px;
+    font-size: 40px;
+    font-weight: 200;
 }
 
-h1 a, a:hover, a:visited, a:active, a:link {
+.lead {
+  font-size: 26px;
+  margin-bottom: 4rem;
+}
+
+h1 a, h1 a:hover, h1 a:visited, h1 a:active, h1 a:link {
     font-size: 100px;
     color: purple;
     cursor: pointer;
@@ -43,4 +52,54 @@ h1 a, a:hover, a:visited, a:active, a:link {
 
 p {
     margin-bottom: 20px;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.back-to-visible {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+.semi {
+  opacity: 0.2;
+  transition: 0.4s;
+}
+
+.text {
+  position: absolute;
+  color: white;
+  font-size: 30px;
+  max-width: 700px;
+  width: 600px;
+  line-height: 40px;
+  left: -50%;
+}
+
+.text-container {
+  top: 4rem;
+  position: absolute;
+  left: 30%;
+}
+
+.more {
+  color: aqua;
+  cursor: hand;
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 2px dotted aqua;
 }

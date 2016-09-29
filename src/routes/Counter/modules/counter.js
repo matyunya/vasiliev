@@ -1,54 +1,37 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
+export const SWITCH_PLAYER = 'SWITCH_PLAYER'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function increment (value = 1) {
+export function switchPlayer (value = "visible") {
   return {
-    type    : COUNTER_INCREMENT,
-    payload : value
-  }
-}
-
-/*  This is a thunk, meaning it is a function that immediately
-    returns a function for lazy evaluation. It is incredibly useful for
-    creating async actions, especially when combined with redux-thunk!
-
-    NOTE: This is solely for demonstration purposes. In a real application,
-    you'd probably want to dispatch an action of COUNTER_DOUBLE and let the
-    reducer take care of this logic.  */
-
-export const doubleAsync = () => {
-  return (dispatch, getState) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        dispatch(increment(getState().counter))
-        resolve()
-      }, 200)
-    })
+    type: SWITCH_PLAYER,
+    payload: value
   }
 }
 
 export const actions = {
-  increment,
-  doubleAsync
+  switchPlayer
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [COUNTER_INCREMENT] : (state, action) => state + action.payload
+  [SWITCH_PLAYER] : (state, action) => {
+    const textClass = action.payload === "semi" ? "text back-to-visible" : "text hidden";
+    return {playerClass: action.payload, textClass: textClass}
+  }
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
-export default function counterReducer (state = initialState, action) {
+const initialState = {playerClass: "hidden", textClass: "hidden"}
+export default function playerClassReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state
