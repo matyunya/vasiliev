@@ -8,7 +8,7 @@ export const Header = () => (
       Home
     </IndexLink>*/}
     {' · '}
-    <h1><Link to='/counter' activeClassName='route--active'>
+    <h1><Link to='/play' activeClassName='route--active'>
       ▶
     </Link></h1>
   </div>

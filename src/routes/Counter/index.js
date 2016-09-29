@@ -1,7 +1,7 @@
 import { injectReducer } from '../../store/reducers'
 
 export default (store) => ({
-  path : 'counter',
+  path : 'play',
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
     /*  Webpack - use 'require.ensure' to create a split point
@@ -19,6 +19,6 @@ export default (store) => ({
       cb(null, Counter)
 
     /* Webpack named bundle   */
-    }, 'counter')
+    }, 'play')
   }
 })
