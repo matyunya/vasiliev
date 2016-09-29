@@ -2,6 +2,7 @@
 // Constants
 // ------------------------------------
 export const SWITCH_PLAYER = 'SWITCH_PLAYER'
+export const INCREMENT = 'INCREMENT'
 
 // ------------------------------------
 // Actions
@@ -13,8 +14,16 @@ export function switchPlayer (value = "visible") {
   }
 }
 
+export function increment () {
+  return {
+    type: INCREMENT,
+    payload: 1
+  }
+}
+
 export const actions = {
-  switchPlayer
+  switchPlayer,
+  increment
 }
 
 // ------------------------------------
@@ -22,15 +31,19 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [SWITCH_PLAYER] : (state, action) => {
+    console.log(state, "STATE")
     const textClass = action.payload === "semi" ? "text back-to-visible" : "text hidden";
-    return {playerClass: action.payload, textClass: textClass}
+    return {playerClass: action.payload, textClass: textClass, counter: state.counter}
+  },
+  [INCREMENT] : (state, action) => {
+    return {playerClass: state.playerClass, textClass: state.textClass, counter: state.counter + action.payload}
   }
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = {playerClass: "hidden", textClass: "hidden"}
+const initialState = {playerClass: "hidden", textClass: "hidden", counter: 0}
 export default function playerClassReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 

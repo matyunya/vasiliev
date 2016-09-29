@@ -17,26 +17,38 @@ const opts = {
       }
     };
 
-function onPlayerStateChange(event) {
-  setTimeout(function() {
-      let time = event.target.getCurrentTime();
-      console.log(time)
-      if (time > 5377) {
-        event.target.pauseVideo();
-      }
-  }, 4000);
-}
-
 class Counter extends Component {
     static propTypes = {
-      playerClass: React.PropTypes.string.isRequired,
       switchPlayer: React.PropTypes.func.isRequired,
       classes: React.PropTypes.object.isRequired
     }
 
     _onReady (event) {
       event.target.playVideo();
-    };
+    }
+
+    //todo: debounce
+    onPlayerStateChange(event, props) {
+      setTimeout(function() {
+          let time = event.target.getCurrentTime();
+          if (time > 5377 && props.classes.counter < 1) {
+            event.target.pauseVideo();
+          } else if (time > 5383 && props.classes.counter < 2) {
+            event.target.pauseVideo();
+          } else if (time > 5387 && props.classes.counter < 3) {
+            event.target.pauseVideo();
+          } else if (time > 5394 && props.classes.counter < 4) {
+            event.target.pauseVideo();
+          } else if (time > 5400 && props.classes.counter < 5) {
+            event.target.pauseVideo();
+          }
+      }, 4000);
+    }
+
+    _play(event, props) {
+      props.switchPlayer("back-to-visible");
+      props.increment();
+    }
 
     render () {
       return (
@@ -44,15 +56,15 @@ class Counter extends Component {
           <div className="loader">
               <YouTube
                 videoId="JJTQeahfbOY"
-                className={this.props.playerClass}
+                className={this.props.classes.playerClass}
                 opts={opts}
                 onReady={(e) => {this._onReady(e); this.props.switchPlayer("visible"); }}
-                onStateChange={onPlayerStateChange}
+                onStateChange={(e) => this.onPlayerStateChange(e, this.props)}
                 onPause={() => this.props.switchPlayer("semi")}
-                onPlay={() => this.props.switchPlayer("back-to-visible")}
+                onPlay={(e) => this._play(e, this.props)}
               />
             </div>
-            <Text className={this.props.classes.textClass} />
+            <Text className={this.props.classes.textClass} i={this.props.classes.counter} />
           </div>
   )
     }
