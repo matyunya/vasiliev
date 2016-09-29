@@ -1,3 +1,30 @@
 .core-layout__viewport {
-  padding-top: 4rem;
+  padding-top: 1rem;
+}
+
+.container {
+  max-width: 700px;
+  margin: auth;
+}
+
+h4, h1 {
+  text-align: center;
+}
+
+h4 {
+    color: white;
+    background-color:purple;
+    padding: 8px;
+    margin-bottom: 20px;
+}
+
+h1 a, a:hover, a:visited {
+    font-size: 100px;
+    color: purple;
+    cursor: pointer;
+    cursor: hand;
+}
+
+p {
+    margin-bottom: 20px;
 }
