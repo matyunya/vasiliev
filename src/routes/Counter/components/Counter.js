@@ -78,8 +78,6 @@ class Counter extends Component {
           event.target.pauseVideo();
           clearInterval(id);
           props.increment();
-        } else if (props.classes.counter >= 4) {
-          props.router.push('/about')
         }
       }, 1000);
     }
