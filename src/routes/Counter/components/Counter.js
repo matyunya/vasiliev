@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import YouTube from 'react-youtube'
 import Text from './Text'
+import { browserHistory } from 'react-router'
 
 const opts = {
       width: '100%',
@@ -75,8 +76,7 @@ class Counter extends Component {
           clearInterval(id);
           props.increment();
         } else if (props.classes.counter >= 4) {
-          props.switchPlayer("hidden");
-          console.log("FINISH!");
+          browserHistory.push('/about')
         }
       }, 1000);
     }
