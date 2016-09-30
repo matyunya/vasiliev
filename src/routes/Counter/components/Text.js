@@ -23,9 +23,9 @@ class Text extends Component {
          <div className="text-container">
             <div className={this.props.className}>
               <p><b>{headers[this.props.i]}</b></p>
-              <p>
-                {texts[this.props.i]} <More text={more[this.props.i]} i={this.props.i} />
-              </p>
+              <p>{texts[this.props.i]}</p>
+              {this.props.i === 0 && <p><small>Чтобы продолжить просмотр, нажмите на любое место на экране.</small></p>}
+              <p><More text={more[this.props.i]} i={this.props.i} /></p>
             </div>
           </div>
   )
@@ -44,13 +44,14 @@ class More extends Component {
     }
   }
 
-  _switch() {
+  _switch(e) {
+    e.preventDefault();
     this.setState({className: this.state.className === "visible" ? "hidden" : "visible"})
   }
 
   render() {
     return (<span>
-      {this.props.i !== 2 && <a className="more" onClick={() => this._switch()}>→</a>}
+      {this.props.i !== 2 && <a className="more" onClick={(e) => this._switch(e)}>→</a>}
       <br/><br/><span className={this.state.className}>{this.props.text}</span>
     </span>
     )

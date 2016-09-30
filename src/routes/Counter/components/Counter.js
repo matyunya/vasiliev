@@ -23,8 +23,23 @@ class Counter extends Component {
       classes: React.PropTypes.object.isRequired
     }
 
-    _onReady (event) {
+    constructor(props) {
+      super(props);
+      this.state = {player: {}};
+    }
+
+    _onReady(event) {
       event.target.playVideo();
+      this.setState({player: event.target});
+
+      let listener = e => this._continue(e);
+      window.addEventListener('mousedown', listener);
+    }
+
+    _continue(e) {
+      if (e.target.localName !== 'a') {
+        this.state.player.playVideo();
+      }
     }
 
     _pause(event, props) {
@@ -33,39 +48,37 @@ class Counter extends Component {
       }
     }
 
-    _p(e, props, id) {
-      e.target.pauseVideo();
-      clearInterval(id);
-      props.increment();
-    }
-
     _play(event, props) {
       props.switchPlayer("back-to-visible");
+
       let id = setInterval(function() {
         let time = event.target.getCurrentTime();
-        console.log("here", time, props.classes)
+
         if (time > 5377 && props.classes.counter < 0) {
           event.target.pauseVideo();
           clearInterval(id);
           props.increment();
-        } else if (time > 5419 && props.classes.counter < 1) { // 5419
+        } else if (time > 5419 && props.classes.counter < 1) {
           event.target.pauseVideo();
           clearInterval(id);
           props.increment();
-        } else if (time > 5518 && props.classes.counter < 2) {  // 5518
+        } else if (time > 5518 && props.classes.counter < 2) { 
           event.target.pauseVideo();
           clearInterval(id);
           props.increment();
-        } else if (time > 5606 && props.classes.counter < 3) { // 5606
+        } else if (time > 5606 && props.classes.counter < 3) {
           event.target.pauseVideo();
           clearInterval(id);
           props.increment();
-        } else if (time > 5649 && props.classes.counter < 4) { // 5649
+        } else if (time > 5649 && props.classes.counter < 4) {
           event.target.pauseVideo();
           clearInterval(id);
           props.increment();
+        } else if (props.classes.counter >= 4) {
+          props.switchPlayer("hidden");
+          console.log("FINISH!");
         }
-      }, 500);
+      }, 1000);
     }
 
     render () {
@@ -78,7 +91,7 @@ class Counter extends Component {
                 opts={opts}
                 onReady={(e) => {this._onReady(e); this.props.switchPlayer("visible"); }}
                 onPause={(e) => this._pause(e, this.props)}
-                onPlay={(e) => this._play(e, this.props)}
+                onPlay={(e) => {this._play(e, this.props)} }
               />
             </div>
             <Text className={this.props.classes.textClass} i={this.props.classes.counter} />
