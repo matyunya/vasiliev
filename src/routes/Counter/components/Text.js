@@ -23,9 +23,7 @@ class Text extends Component {
          <div className="text-container">
             <div className={this.props.className}>
               <p><b>{headers[this.props.i]}</b></p>
-              <p>{texts[this.props.i]}</p>
-              {this.props.i === 0 && <p><small>Чтобы продолжить просмотр, нажмите на любое место на экране.</small></p>}
-              <p><More text={more[this.props.i]} i={this.props.i} /></p>
+              <p>{texts[this.props.i]} <More text={more[this.props.i]} i={this.props.i} /></p>
             </div>
           </div>
   )
@@ -52,7 +50,8 @@ class More extends Component {
   render() {
     return (<span>
       {this.props.i !== 2 && <a className="more" onClick={(e) => this._switch(e)}>→</a>}
-      <br/><br/><span className={this.state.className}>{this.props.text}</span>
+      {this.props.i === 0 && <p><small>Чтобы продолжить просмотр, нажмите на любое место на экране.</small></p>}
+      <br/><span className={this.state.className}>{this.props.text}</span>
     </span>
     )
   }

@@ -13,9 +13,9 @@ class About extends Component {
             <li>4. М.Н. Эпштейн. «Постмодерн в русской литературе», с.85</li>
           </ul>
 
-          <a href="https://www.youtube.com/watch?v=JJTQeahfbOY">Спектакль целиком</a>
+          <a target="_blank" href="https://www.youtube.com/watch?v=JJTQeahfbOY">Спектакль целиком</a>
           <br/>
-         <IndexLink activeClassName='route--active' to='/'>
+         <IndexLink to='/'>
               В начало
          </IndexLink>
 
