@@ -38,6 +38,10 @@ class Counter extends Component {
     }
 
     _continue(e) {
+      if (this.props.classes.counter >= 4) {
+        browserHistory.push('/about');
+      }
+
       if (e.target.localName !== 'a') {
         this.state.player.playVideo();
       }
@@ -54,7 +58,6 @@ class Counter extends Component {
 
       let id = setInterval(function() {
         let time = event.target.getCurrentTime();
-
         if (time > 5377 && props.classes.counter < 0) {
           event.target.pauseVideo();
           clearInterval(id);
@@ -76,7 +79,7 @@ class Counter extends Component {
           clearInterval(id);
           props.increment();
         } else if (props.classes.counter >= 4) {
-          browserHistory.push('/about')
+          props.router.push('/about')
         }
       }, 1000);
     }

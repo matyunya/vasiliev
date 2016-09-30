@@ -4,7 +4,7 @@ import { IndexLink } from 'react-router'
 class About extends Component {
     render () {
       return (
-        <div class="container">
+        <div className="container">
           <h3>Список литературы</h3>
           <ol>
             <li>Анатолий Васильев, Зара Абдуллаева. «Параутопия», с. 279-297.</li>

@@ -23,7 +23,7 @@ class Text extends Component {
          <div className="text-container">
             <div className={this.props.className}>
               <p><b>{headers[this.props.i]}</b></p>
-              <p>{texts[this.props.i]} <More text={more[this.props.i]} i={this.props.i} /></p>
+              <br/>{texts[this.props.i]} <More text={more[this.props.i]} i={this.props.i} />
             </div>
           </div>
   )
