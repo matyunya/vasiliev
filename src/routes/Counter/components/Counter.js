@@ -27,27 +27,45 @@ class Counter extends Component {
       event.target.playVideo();
     }
 
-    //todo: debounce
-    onPlayerStateChange(event, props) {
-      setTimeout(function() {
-          let time = event.target.getCurrentTime();
-          if (time > 5377 && props.classes.counter < 1) {
-            event.target.pauseVideo();
-          } else if (time > 5383 && props.classes.counter < 2) {
-            event.target.pauseVideo();
-          } else if (time > 5387 && props.classes.counter < 3) {
-            event.target.pauseVideo();
-          } else if (time > 5394 && props.classes.counter < 4) {
-            event.target.pauseVideo();
-          } else if (time > 5400 && props.classes.counter < 5) {
-            event.target.pauseVideo();
-          }
-      }, 4000);
+    _pause(event, props) {
+      if (props.classes.playerClass !== "semi") {
+        this.props.switchPlayer("semi");  
+      }
+    }
+
+    _p(e, props, id) {
+      e.target.pauseVideo();
+      clearInterval(id);
+      props.increment();
     }
 
     _play(event, props) {
       props.switchPlayer("back-to-visible");
-      props.increment();
+      let id = setInterval(function() {
+        let time = event.target.getCurrentTime();
+        console.log("here", time, props.classes)
+        if (time > 5377 && props.classes.counter < 0) {
+          event.target.pauseVideo();
+          clearInterval(id);
+          props.increment();
+        } else if (time > 5419 && props.classes.counter < 1) { // 5419
+          event.target.pauseVideo();
+          clearInterval(id);
+          props.increment();
+        } else if (time > 5518 && props.classes.counter < 2) {  // 5518
+          event.target.pauseVideo();
+          clearInterval(id);
+          props.increment();
+        } else if (time > 5606 && props.classes.counter < 3) { // 5606
+          event.target.pauseVideo();
+          clearInterval(id);
+          props.increment();
+        } else if (time > 5649 && props.classes.counter < 4) { // 5649
+          event.target.pauseVideo();
+          clearInterval(id);
+          props.increment();
+        }
+      }, 500);
     }
 
     render () {
@@ -59,8 +77,7 @@ class Counter extends Component {
                 className={this.props.classes.playerClass}
                 opts={opts}
                 onReady={(e) => {this._onReady(e); this.props.switchPlayer("visible"); }}
-                onStateChange={(e) => this.onPlayerStateChange(e, this.props)}
-                onPause={() => this.props.switchPlayer("semi")}
+                onPause={(e) => this._pause(e, this.props)}
                 onPlay={(e) => this._play(e, this.props)}
               />
             </div>

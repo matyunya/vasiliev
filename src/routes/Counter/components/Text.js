@@ -33,10 +33,25 @@ class Text extends Component {
 }
 
 class More extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {className: "hidden"};
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.text !== this.props.text) {
+      this.setState({className: "hidden"});
+    }
+  }
+
+  _switch() {
+    this.setState({className: this.state.className === "visible" ? "hidden" : "visible"})
+  }
+
   render() {
     return (<span>
-      {this.props.i !== 2 && <a className="more">→</a>}
-      <br/><span>{this.props.text}</span>
+      {this.props.i !== 2 && <a className="more" onClick={() => this._switch()}>→</a>}
+      <br/><br/><span className={this.state.className}>{this.props.text}</span>
     </span>
     )
   }

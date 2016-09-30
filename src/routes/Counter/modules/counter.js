@@ -31,7 +31,7 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [SWITCH_PLAYER] : (state, action) => {
-    console.log(state, "STATE")
+    console.log(state.counter, "STATE")
     const textClass = action.payload === "semi" ? "text back-to-visible" : "text hidden";
     return {playerClass: action.payload, textClass: textClass, counter: state.counter}
   },
@@ -43,7 +43,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = {playerClass: "hidden", textClass: "hidden", counter: 0}
+const initialState = {playerClass: "hidden", textClass: "hidden", counter: -1}
 export default function playerClassReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
