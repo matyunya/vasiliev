@@ -40,9 +40,7 @@ class Counter extends Component {
     _continue(e) {
       if (this.props.classes.counter >= 4) {
         browserHistory.push('/about');
-      }
-
-      if (e.target.localName !== 'a') {
+      } else if (e.target.localName !== 'a') {
         this.state.player.playVideo();
       }
     }
