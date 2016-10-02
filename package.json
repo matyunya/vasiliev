@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-starter-kit",
-  "version": "3.0.0-alpha.2",
-  "description": "Get started with React, Redux, and React-Router!",
+  "name": "vasiliev",
+  "version": "1",
+  "description": "Anatoly Vasiliev's artistic method",
   "main": "index.js",
   "engines": {
     "node": ">=4.5.0",
@@ -79,9 +79,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
+    "url": "git+https://github.com/matyunya/vasiliev"
   },
-  "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
+  "author": "Maxim Matyunin <matyunya@matyunya.com>",
   "license": "MIT",
   "dependencies": {
     "babel-loader": "^6.2.5",
