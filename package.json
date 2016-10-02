@@ -1,6 +1,6 @@
 {
   "name": "vasiliev",
-  "version": "1",
+  "version": "1.0.0",
   "description": "Anatoly Vasiliev's artistic method",
   "main": "index.js",
   "engines": {
