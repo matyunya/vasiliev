@@ -14,6 +14,9 @@ const paths = config.utils_paths
 app.use(require('connect-history-api-fallback')())
 app.use(compress())
 
+// Apply gzip compression
+app.use(compress())
+
 // ------------------------------------
 // Apply Webpack HMR Middleware
 // ------------------------------------
